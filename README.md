@@ -1,12 +1,8 @@
 # LINUX
 
 ## Домашнее задание № 1
-Перед тем как работать с файлами создадим новую директорию при помощи команды:
-```
-mikevb@mike-vb:~$ mkdir homework
-```
 
-## После мы используем следующую команду для создания файлов и заполняем их случайными символами:
+## Мы используем следующую команду для создания файлов и заполняем их случайными символами:
 ```
 mikevb@mike-vb:~$ cat > file1
 aghio[rga
@@ -40,7 +36,6 @@ mikevb@mike-vb:~$ ls -li
 1442261 -rw-rw-r-- 1 mikevb mikevb    32 июн 25 19:27  file2
 1442277 lrwxrwxrwx 1 mikevb mikevb     5 июн 25 19:29  file3 -> file1
 1442192 -rw-rw-r-- 2 mikevb mikevb    32 июн 25 19:25  file4
-1442176 drwxrwxr-x 2 mikevb mikevb  4096 июн 25 19:23  homework
       1 drwxrwx--- 1 root   vboxsf 40960 июн 19 22:04  shared
 1441891 drwx------ 3 mikevb mikevb  4096 июн 20 13:17  snap
 1441829 drwxr-xr-x 2 mikevb mikevb  4096 июн 20 13:17  Видео
@@ -65,7 +60,6 @@ mikevb@mike-vb:~$ ls -li
 1442261 -rw-rw-r-- 1 mikevb mikevb    32 июн 25 19:27  file2
 1442277 lrwxrwxrwx 1 mikevb mikevb     5 июн 25 19:29  file3 -> file1
 1442192 -rw-rw-r-- 1 mikevb mikevb    32 июн 25 19:25  file4
-1442176 drwxrwxr-x 2 mikevb mikevb  4096 июн 25 19:23  homework
       1 drwxrwx--- 1 root   vboxsf 40960 июн 19 22:04  shared
 1441891 drwx------ 3 mikevb mikevb  4096 июн 20 13:17  snap
 1441829 drwxr-xr-x 2 mikevb mikevb  4096 июн 20 13:17  Видео
