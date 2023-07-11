@@ -113,11 +113,94 @@ sudo apt install libapache2-mod-php8.1
 ```
 Listen 8888
 ```
+
 ## Настроить схему обратного прокси для Nginx (динамика - на Apache).
+Открываем конфиг файл:
+```
+sudo nano /etc/nginx/sites-enabled/default
+```
+Вставляем конфиг. Динамику перенаправляем на Apache, статику оставляем на Nginx:
+```
+server {
+     listen 80 default_server;
+     listen [::]:80 default_server;
 
+     root /var/www/html;
 
+     index index.html index.htm index.nginx-debian.html;
 
+     server_name _;
 
+     location / {
+             proxy_pass http://localhost:8888;
+             proxy_set_header Host Shost;
+             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+             proxy_set_header X-Real-IP Sremote_addr;
+     }
+
+     location ~* ^.+.(jpg|jpeg|gif|png|ico|css|zip|pdf|txt|tar|js)$ {
+             root /var/www/html;
+     }
+}
+```
+
+## Установить MySQL. Создать новую базу данных и таблицу в ней.
+Установить MySQL:
+```
+sudo apt install mysql-server-8.0
+```
+Создать новую базу данных и таблицу в ней:
+
+Запуск MySQL:
+```
+sudo mysql
+```
+Создание БД:
+```
+CREATE DATABASE my_db;
+```
+Переключаемся на нашу БД:
+```
+USE my_db;
+```
+Создаём новую таблицу:
+```
+CREATE TABLE new_table (
+```
+Вводим поля таблицы и перечисляем их параметры:
+```
+id INT PRIMARY KEY AUTO_INCREMENT,
+```
+```
+name TEXT);
+```
+Добавляем данные в таблицу:
+```
+INSERT INTO new_table (name) VALUES ('John'), ('Lera'), ('George');
+```
+Просмотрим нашу таблицу:
+```
+SELECT * FROM new_table;
+```
+
+## **Установить пакет phpmyadmin и запустить его веб-интерфейс для управления MySQL.
+Установить пакет phpmyadmin:
+```
+sudo apt install phpmyadmin
+```
+При выборе сервера ставим apache2
+Соглашаемся с настройкой
+Устанавливаем пароль
+Запускаем MySQL
+```
+sudo mysql
+```
+Создаём пользователя, задаём пароль и задаём ему права:
+```
+CREATE USER 'sammy'@'localhost' IDENTIFIED WITH caching_sha2_password BY 'ПАРОЛЬ';
+GRANT ALL PRIVILEGES ON *.* TO 'sammy'@'localhost' WITH GRANT OPTION;
+```
+Запускаем браузер и переходим по адресу http://localhost:8888/phpmyadmin/index.php
 
 
 
